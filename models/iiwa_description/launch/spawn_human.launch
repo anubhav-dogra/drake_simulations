@@ -1,0 +1,12 @@
+<launch>
+  <!-- send human urdf to param server -->
+  <param name="human_description"
+         command="$(find xacro)/xacro --inorder $(find iiwa_description)/urdf/objects/human.urdf" />
+
+  <!-- push human_description to factory and spawn robot in gazebo -->
+  <node name="spawn_human"
+        pkg="gazebo_ros"
+        type="spawn_model"
+        args="-urdf -param human_description -model human_model"
+        respawn="false" />
+</launch>
